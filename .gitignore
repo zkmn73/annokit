@@ -1,0 +1,13 @@
+/.idea
+
+/annotation/annotation.iml
+/processor/processor.iml
+/sample/sample.iml
+/annokit.iml
+
+/annotation/target
+/processor/target
+/sample/target
+
+
+
