@@ -37,7 +37,7 @@ public class NameCheckerProcessor extends AbstractProcessor{
             for(Element element : roundEnv.getElementsAnnotatedWith(NameChecker.class)){
 //                checkHandler.scan(element);
                 String name = element.getSimpleName().toString();
-                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "++++" + name + "++++", element);
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "++++" + name + "++++", element);
             }
         }
         return false;

@@ -11,9 +11,8 @@ import javax.lang.model.element.*;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
-import java.io.IOException;
 import java.util.*;
-
+import java.util.Set;
 /**
  * Desc:
  * Author:sunguoli@meituan.com
@@ -68,8 +67,8 @@ public class SetterGetterProcessor extends AbstractProcessor {
                 TypeElement typeElement = (TypeElement) annotatedElement;
 
                 String pkgName = typeElement.getEnclosingElement().toString();
-                messager.printMessage(Diagnostic.Kind.WARNING, "======>>>PackageName=" + pkgName);
-                messager.printMessage(Diagnostic.Kind.WARNING, "======>>>ClassName=" + typeElement.getSimpleName().toString());
+                messager.printMessage(Diagnostic.Kind.NOTE, "======>>>PackageName=" + pkgName);
+                messager.printMessage(Diagnostic.Kind.NOTE, "======>>>ClassName=" + typeElement.getSimpleName().toString());
 
                 TypeSpec.Builder typeSpecBuilder = TypeSpec.classBuilder(typeElement.getSimpleName().toString());
 
@@ -114,7 +113,7 @@ public class SetterGetterProcessor extends AbstractProcessor {
                     messager.printMessage(Diagnostic.Kind.ERROR, "==>>Setter&Getter Annotation Error: "+ e.getMessage());
                 }
 
-                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "--------finished--------", annotatedElement);
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "--------finished--------", annotatedElement);
             }
         }
         return false;
@@ -125,7 +124,7 @@ public class SetterGetterProcessor extends AbstractProcessor {
     }
 
     private MethodSpec buildSetMethod(Element element){
-        messager.printMessage(Diagnostic.Kind.WARNING, "======>>>building set method for " + element.getSimpleName().toString());
+        messager.printMessage(Diagnostic.Kind.NOTE, "======>>>building set method for " + element.getSimpleName().toString());
         VariableElement variableElement = (VariableElement)element;
 
         String fieldName = variableElement.getSimpleName().toString();
@@ -140,12 +139,12 @@ public class SetterGetterProcessor extends AbstractProcessor {
                 .addStatement("this.$N = $N", fieldName, fieldName)
                 .returns(TypeName.VOID);
 
-        messager.printMessage(Diagnostic.Kind.WARNING, "======>>>" + methodName + " build complete.");
+        messager.printMessage(Diagnostic.Kind.NOTE, "======>>>" + methodName + " build complete.");
         return method.build();
     }
 
     private MethodSpec buildGetMethod(Element element){
-        messager.printMessage(Diagnostic.Kind.WARNING, "======>>>building get method for " + element.getSimpleName().toString());
+        messager.printMessage(Diagnostic.Kind.NOTE, "======>>>building get method for " + element.getSimpleName().toString());
         VariableElement variableElement = (VariableElement)element;
 
         String fieldName = variableElement.getSimpleName().toString();
@@ -159,7 +158,7 @@ public class SetterGetterProcessor extends AbstractProcessor {
                 .addStatement("return this.$N", fieldName)
                 .returns(TypeName.get(variableElement.asType()));
 
-        messager.printMessage(Diagnostic.Kind.WARNING, "======>>>" + methodName + " build complete.");
+        messager.printMessage(Diagnostic.Kind.NOTE, "======>>>" + methodName + " build complete.");
         return method.build();
     }
 
