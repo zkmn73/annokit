@@ -9,8 +9,8 @@ annokit has completed three annotations now:<br/>
 **@Getter**: generate get method automaticly<br/>
 but,Setter and Getter annotation have a barrier to remoce, thus, generating method during compile stage, and cannot write the generated method to file, otherwise, this will got a confilct with .class by javac. so, I must to modify the AST in annotation resolving stage. I have not so much time, this have not finished. and I have read the source code of [lombok][1], which has realized that.
 
-By [hackersun][2]
+
 <br/>2015.12.20
 
 [1]: https://github.com/rzwitserloot/lombok
-[2]: https://github.com/hackersun
+
